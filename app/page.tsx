@@ -1,101 +1,166 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { ChevronRight, Globe, Menu, X } from "lucide-react";
+import PartnersSection from "@/components/partners-section";
+import HelpSection from "@/components/help-section";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-black">
+      <div className="p-4 md:p-6 lg:p-8 flex items-center justify-center">
+        <div className="w-full max-w-7xl rounded-3xl bg-black overflow-hidden">
+          {/* Main container with rounded corners */}
+          <div className="rounded-3xl overflow-hidden flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center p-4 md:p-6">
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-6 bg-white rounded-sm flex items-center justify-center">
+                  <div className="h-3 w-3 bg-black rounded-sm"></div>
+                </div>
+                <span className="text-white font-bold text-xl">FYNSEC</span>
+              </div>
+
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex bg-white rounded-full px-4 py-2">
+                <nav className="flex space-x-6">
+                  <button className="text-black font-medium">Services</button>
+                  <button className="text-black font-medium">Pricing</button>
+                  <button className="text-black font-medium">About</button>
+                  <button className="text-black font-medium">Contact us</button>
+                </nav>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {/* Mobile Menu Button */}
+                <button
+                  className="md:hidden text-white p-1 rounded-md"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label="Toggle menu"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </button>
+
+                <div className="hidden sm:flex items-center gap-1 text-white bg-black/20 px-3 py-1.5 rounded-full">
+                  <span>English</span>
+                  <Globe className="h-4 w-4" />
+                </div>
+                <button className="hidden sm:flex bg-zinc-800 text-white rounded-full px-4 py-2 items-center gap-1">
+                  <div className="h-4 w-4 bg-white rounded-full"></div>
+                  <span>Let's Connect</span>
+                </button>
+              </div>
+            </div>
+            {/* Mobile Navigation Menu */}
+            {mobileMenuOpen && (
+              <div className="md:hidden bg-white rounded-xl mx-4 mb-4 overflow-hidden">
+                <nav className="flex flex-col">
+                  <button className="text-black font-medium py-3 px-6 hover:bg-gray-100 text-left">
+                    Services
+                  </button>
+                  <button className="text-black font-medium py-3 px-6 hover:bg-gray-100 text-left">
+                    Pricing
+                  </button>
+                  <button className="text-black font-medium py-3 px-6 hover:bg-gray-100 text-left">
+                    About
+                  </button>
+                  <button className="text-black font-medium py-3 px-6 hover:bg-gray-100 text-left">
+                    Contact us
+                  </button>
+                  <div className="border-t border-gray-200 py-3 px-6 flex justify-between items-center">
+                    <div className="flex items-center gap-1 text-black">
+                      <span>English</span>
+                      <Globe className="h-4 w-4" />
+                    </div>
+                    <button className="bg-zinc-800 text-white rounded-full px-4 py-2 flex items-center gap-1">
+                      <div className="h-3 w-3 bg-white rounded-full"></div>
+                      <span className="text-sm">Let's Connect</span>
+                    </button>
+                  </div>
+                </nav>
+              </div>
+            )}
+            {/* Main content */}
+            <div className="bg-white rounded-3xl p-6 md:p-10 lg:p-16 flex flex-col md:flex-row">
+              {/* Left content */}
+              <div className="flex-1 pr-0 md:pr-10">
+                <div className="space-y-6">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+                    There is a <br />
+                    Better Way <br />
+                    to Secure.
+                  </h1>
+
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-12 w-12 sm:h-16 sm:w-16">
+                      <div className="absolute bottom-0 h-8 w-8 sm:h-10 sm:w-10 bg-gray-200 rounded-md"></div>
+                      <div className="absolute bottom-1.5 sm:bottom-2 h-8 w-8 sm:h-10 sm:w-10 bg-gray-300 rounded-md"></div>
+                      <div className="absolute bottom-3 sm:bottom-4 h-8 w-8 sm:h-10 sm:w-10 bg-orange-200 rounded-md"></div>
+                      <div className="absolute bottom-4.5 sm:bottom-6 h-8 w-8 sm:h-10 sm:w-10 bg-orange-400 rounded-md flex items-center justify-center">
+                        <div className="h-4 w-4 sm:h-5 sm:w-5 border-2 border-black rounded-md"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button className="flex items-center gap-2 font-medium">
+                    Contact Us
+                    <div className="bg-black rounded-full p-1">
+                      <ChevronRight className="h-4 w-4 text-white" />
+                    </div>
+                  </button>
+
+                  <div className="border-t border-gray-300 pt-4 max-w-md">
+                    <p className="text-gray-600 text-sm">
+                      FynSec is an vulnerability scanner that finds cyber
+                      security weaknesses in your digital infrastructure, to
+                      avoid costly data breaches.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right content - Image */}
+              <div className="flex-1 mt-10 md:mt-0">
+                <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
+                  <Image
+                    src="/placeholder.svg?height=500&width=600"
+                    alt="Security layers visualization with camera lens"
+                    width={600}
+                    height={500}
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+            <HelpSection />
+            <PartnersSection />
+            {/* Footer */}
+            <div className="flex justify-end p-4">
+              <div className="flex items-center gap-2 bg-black rounded-full px-3 py-1.5">
+                <span className="text-white text-xs sm:text-sm">
+                  Crazy mode:
+                </span>
+                <div className="flex bg-zinc-800 rounded-full p-1">
+                  <button className="bg-zinc-700 text-white text-xs rounded-full px-2 py-0.5">
+                    On
+                  </button>
+                  <button className="text-white text-xs rounded-full px-2 py-0.5">
+                    Off
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
