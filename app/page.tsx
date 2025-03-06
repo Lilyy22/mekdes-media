@@ -5,6 +5,8 @@ import Image from "next/image";
 import { ChevronRight, Globe, Menu, X } from "lucide-react";
 import PartnersSection from "@/components/partners-section";
 import HelpSection from "@/components/help-section";
+import TopStories from "./components/top-stories";
+import Footer from "./components/footer";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,14 +20,16 @@ export default function Home() {
             {/* Header */}
             <div className="flex justify-between items-center p-4 md:p-6">
               <div className="flex items-center gap-2">
-                <div className="h-6 w-6 bg-white rounded-sm flex items-center justify-center">
+                <div className="h-6 w-6 bg-yellow-400 rounded-sm flex items-center justify-center">
                   <div className="h-3 w-3 bg-black rounded-sm"></div>
                 </div>
-                <span className="text-white font-bold text-xl">FYNSEC</span>
+                <span className="text-white font-bold text-2xl">
+                  MekdiyeMedia
+                </span>
               </div>
 
               {/* Desktop Navigation */}
-              <div className="hidden md:flex bg-white rounded-full px-4 py-2">
+              <div className="hidden lg:flex bg-white rounded-full px-4 py-2">
                 <nav className="flex space-x-6">
                   <button className="text-black font-medium">Services</button>
                   <button className="text-black font-medium">Pricing</button>
@@ -37,7 +41,7 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 {/* Mobile Menu Button */}
                 <button
-                  className="md:hidden text-white p-1 rounded-md"
+                  className="lg:hidden text-white p-1 rounded-md"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   aria-label="Toggle menu"
                 >
@@ -60,7 +64,7 @@ export default function Home() {
             </div>
             {/* Mobile Navigation Menu */}
             {mobileMenuOpen && (
-              <div className="md:hidden bg-white rounded-xl mx-4 mb-4 overflow-hidden">
+              <div className="lg:hidden bg-white rounded-xl mx-4 mb-4 overflow-hidden">
                 <nav className="flex flex-col">
                   <button className="text-black font-medium py-3 px-6 hover:bg-gray-100 text-left">
                     Services
@@ -92,10 +96,10 @@ export default function Home() {
               {/* Left content */}
               <div className="flex-1 pr-0 md:pr-10">
                 <div className="space-y-6">
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
-                    There is a <br />
-                    Better Way <br />
-                    to Secure.
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-black">
+                    Your Trusted <br />
+                    Source for <br />
+                    News & Entertainment.
                   </h1>
 
                   <div className="flex items-center gap-3">
@@ -109,8 +113,8 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <button className="flex items-center gap-2 font-medium">
-                    Contact Us
+                  <button className="flex items-center gap-2 font-medium text-black">
+                    Start Exploring
                     <div className="bg-black rounded-full p-1">
                       <ChevronRight className="h-4 w-4 text-white" />
                     </div>
@@ -118,9 +122,8 @@ export default function Home() {
 
                   <div className="border-t border-gray-300 pt-4 max-w-md">
                     <p className="text-gray-600 text-sm">
-                      FynSec is an vulnerability scanner that finds cyber
-                      security weaknesses in your digital infrastructure, to
-                      avoid costly data breaches.
+                      Explore trusted reviews, exclusive promotions, and
+                      entertaining TV content—all in one place.
                     </p>
                   </div>
                 </div>
@@ -130,8 +133,8 @@ export default function Home() {
               <div className="flex-1 mt-10 md:mt-0">
                 <div className="relative h-[300px] sm:h-[400px] md:h-[500px]">
                   <Image
-                    src="/placeholder.svg?height=500&width=600"
-                    alt="Security layers visualization with camera lens"
+                    src="/hero.png"
+                    alt="hero image"
                     width={600}
                     height={500}
                     className="object-contain"
@@ -141,23 +144,10 @@ export default function Home() {
               </div>
             </div>
             <HelpSection />
+            <TopStories />
             <PartnersSection />
             {/* Footer */}
-            <div className="flex justify-end p-4">
-              <div className="flex items-center gap-2 bg-black rounded-full px-3 py-1.5">
-                <span className="text-white text-xs sm:text-sm">
-                  Crazy mode:
-                </span>
-                <div className="flex bg-zinc-800 rounded-full p-1">
-                  <button className="bg-zinc-700 text-white text-xs rounded-full px-2 py-0.5">
-                    On
-                  </button>
-                  <button className="text-white text-xs rounded-full px-2 py-0.5">
-                    Off
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Footer />
           </div>
         </div>
       </div>
